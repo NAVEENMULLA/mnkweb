@@ -30,5 +30,10 @@ pipeline{
                 echo "deploy to prod"
             }
         }
+        stage("Final session"){
+            steps{
+                echo "THE START"
+            }
+        }
     }
 }
