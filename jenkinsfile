@@ -1,9 +1,33 @@
 pipeline {
     agent any
     stages {
-        stage("welcome") {
+        stage("maven build") {
             steps {
-              echo "This is a jenkins file"
+              sh "mvn clean package"
+            }
+        }
+         stage("deploy build") {
+         when{
+         branch "develop"
+         }
+            steps {
+              echo "Deploye to development server"
+            }
+        }
+         stage("deploy to stage") {
+           when{
+         branch "stage"
+         }
+            steps {
+              echo "Deploye to stage server"
+            }
+        }
+         stage("deploy prod") {
+           when{
+         branch "prod"
+         }
+            steps {
+              echo "Deploye to prod server"
             }
         }
     }
